@@ -1,0 +1,24 @@
+{
+  "name": "collectiveblognode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SlayerDF/CollectiveBlogNode.git"
+  },
+  "author": "SlayerDF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SlayerDF/CollectiveBlogNode/issues"
+  },
+  "homepage": "https://github.com/SlayerDF/CollectiveBlogNode#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {}
+}
