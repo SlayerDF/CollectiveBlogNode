@@ -1,5 +1,5 @@
 var express = require('express')
-var router = express.Router()
+var router  = express.Router()
 
 var route_register_render   = require('./register.render.route.js')
 var route_register          = require('./register.route.js')

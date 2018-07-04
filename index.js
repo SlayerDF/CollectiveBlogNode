@@ -1,8 +1,20 @@
 var express = require('express')
-var routes = require('./routes')
+var routes  = require('./routes')
+var models  = require('./models')
 
-var app = express()
+async function initialize() {
+    try {
+        await models.sequelize.authenticate()
+        console.log('Sequelize authenticated')
 
-app.set('view engine', 'ejs')
-app.use('/', routes)
-app.listen(8080)
+        var app     = express()
+        app.set('view engine', 'ejs')
+        app.use('/', routes)
+        app.listen(8080, () => console.log('Server started'))
+    }
+    catch(err) {
+        console.log('Sequelize cannot authenticate')
+    }
+}
+
+initialize()
