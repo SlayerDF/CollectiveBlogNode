@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       set(val) {
-        return bcrypt.hashSync(val);
+        this.setDataValue('password', bcrypt.hashSync(val, 10));
       }
     }
   }, {});

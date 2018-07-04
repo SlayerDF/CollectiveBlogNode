@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./partials/head %>
+</head>
+
+<body class="container">
+
+    <navigation>
+        <% include ./partials/navigation %>
+    </navigation>
+
+    <main>
+        <div class="jumbotron">
+                <form class="needs-validation" method="POST" action="/register">
+                    <div class="form-group">
+                        <label for="fullName">Full name</label>
+                        <input type="text" class="form-control <%= typeof errors!='undefined' && typeof errors.fullName!='undefined' ? 'is-invalid' : '' %>" id="fullName" name="fullName" aria-describedby="fullNameHelpInline" placeholder="Enter full name" value="<%= typeof data!='undefined' && typeof data.fullName!='undefined' ? data.fullName : '' %>" required>
+                        <div class="invalid-feedback">
+                            Please enter correct name
+                        </div>
+                        <small id="fullNameHelpInline" class="text-muted">
+                                Must be 5-30 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control <%= typeof errors!='undefined' && typeof errors.email!='undefined' ? 'is-invalid' : '' %>" id="email" name="email" placeholder="Enter email" value="<%= typeof data!='undefined' && typeof data.email!='undefined' ? data.email : '' %>" required>
+                        <div class="invalid-feedback">
+                            This email address already in use
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control <%= typeof errors!='undefined' && typeof errors.password!='undefined' ? 'is-invalid' : '' %>" id="password" name="password" aria-describedby="passwordHelpInline" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            <%= typeof errors!='undefined' && typeof errors.password!='undefined' ? errors.password : '' %>
+                        </div>
+                        <small id="passwordHelpInline" class="text-muted">
+                                Must be 5-30 characters long.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordRepeat">Repeat password</label>
+                        <input type="password" class="form-control <%= typeof errors!='undefined' && typeof errors.passwordRepeat!='undefined' ? 'is-invalid' : '' %>" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat password" required>
+                        <div class="invalid-feedback">
+                            Passwords does not match
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

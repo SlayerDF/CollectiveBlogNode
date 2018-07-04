@@ -9,16 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      createdAt: {
-        type: Sequelize.DATE
-      },
       description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       text: {
+        allowNull: false,
         type: Sequelize.STRING
+      },
+      user: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -27,10 +31,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      user: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       }
     });
   },
