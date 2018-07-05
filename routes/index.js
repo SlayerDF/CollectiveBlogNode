@@ -6,7 +6,6 @@ var route_register          = require('./register.route.js')
 var route_auth_render       = require('./auth.render.route.js')
 var route_auth              = require('./auth.route.js')
 var route_logout            = require('./logout.route.js')
-var route_main_render       = require('./main.render.route.js')
 var route_main_page_render  = require('./main.page.render.route.js')
 var route_post_render       = require('./post.render.route.js')
 var route_post_new_render   = require('./post.new.render.route.js')
@@ -25,7 +24,7 @@ router.post('/auth',            route_auth)
 
 router.get ('/logout',          route_logout)
 
-router.get('/',                 route_main_render)
+router.get('/',                 route_main_page_render)
 
 router.get('/page/:page',       route_main_page_render)
 
