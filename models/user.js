@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Post, {foreignKey: 'user', sourceKey: 'id'});
   };
   User.prototype.checkPassword = async function(val) {
-    return await bcrypt.compare(val, this.password);
+    return await bcrypt.compare(val, this.password)
   };
   return User;
 };

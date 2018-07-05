@@ -7,12 +7,12 @@ passport.use(new LocalStrategy(
     async (username, password, done) => {
         try {
             var user = await models.User.findOne({ where: { email: username }})
-            if (!user) return done("User not found", false)
-            if (!user.checkPassword(password)) return done("Wrong password", false)
-            return done(null, user)
+            if (!user) throw "User not found"
+            if (!await user.checkPassword(password)) throw "Wrong password"
+            done(null, user)
         }
         catch(err){
-            return done(err)
+            return done(err, null)
         }
     }
 ))

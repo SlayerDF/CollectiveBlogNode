@@ -1,6 +1,6 @@
 var Joi         = require('joi')
 var passport    = require('passport')
-var models        = require('../models')
+var models      = require('../models')
 var helpers     = require('../helpers')
 
 var registerSchema = Joi.object().keys({
@@ -14,7 +14,7 @@ async function register(req, res, next) {
     if (req.isAuthenticated()) return res.redirect('/')
 
     var validation = registerSchema.validate(req.body, {abortEarly: false})
-    if (models.User.count({ where: { email: req.body.email }}) !== 0) {
+    if (await models.User.count({ where: { email: req.body.email }}) !== 0) {
         if (validation.error == null) validation.error = { details: [] }
         validation.error.details.push({ 
             message: "This email address already in use",
@@ -22,11 +22,12 @@ async function register(req, res, next) {
         })
     }
     if (validation.error !== null) return res.render('../views/register', {
+        auth: req.isAuthenticated(),
         data: {
             fullName: req.body.fullName,
             email: req.body.email
         },
-        errors: helpers.arrayToObject(validation.error.details, "context.key", "message")
+        errors: helpers.arrayToObject(validation.error.details, 'context.key', 'message')
     })
 
     try {
@@ -36,15 +37,10 @@ async function register(req, res, next) {
             password: validation.value.password
         })
 
-        //await passport.authenticate('local')
-        passport.authenticate('local', function(err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.redirect('/register'); }
-            req.logIn(user, function(err) {
-                if (err) { return next(err); }
-                return res.redirect('/')
-            });
-        })(req, res, next);
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/register'
+        })(req, res, next)
     }
     catch(err){
         res.status(400).send("User creation error:" + err)
