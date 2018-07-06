@@ -5,7 +5,7 @@
     <% include ./partials/head %>
 </head>
 
-<body class="container">
+<body class="container" style="width: 50%;">
 
     <navigation>
         <% include ./partials/navigation %>
@@ -19,9 +19,11 @@
             <% if (posts.length == 0) { %>
                 <h3>There are no posts</h3>
             <% } %>
+            <ul>
             <% posts.forEach(function(post) { %>
-                <a href="/post/<%= post.id %>" class="card-link"><%= post.name %></a>
+                <li><a href="/post/<%= post.id %>" class="card-link"><%= post.name %></a></li>
             <% }) %>
+            </ul>
         </div>
     </div>
 

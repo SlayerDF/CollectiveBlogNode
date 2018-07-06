@@ -8,6 +8,7 @@ var pageSchema = Joi.object().keys({
 const perPage = 10
 
 async function main_page_render(req, res, next) {
+
     var validation = pageSchema.validate(req.params, {abortEarly: false})
     var page = typeof req.params.page !== 'undefined' && validation.error === null ? req.params.page : 1
 

@@ -7,6 +7,10 @@ async function post_render(req, res) {
 
     if (!post) return res.sendStatus(404)
 
+    post.author = await models.User
+            .findOne({ where: { id: post.user }, attributes: [ 'fullName' ]})
+            .get('fullName')
+
     res.render('../views/post', { 
         auth: req.isAuthenticated(),
         post: post,
