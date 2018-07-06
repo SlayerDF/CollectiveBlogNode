@@ -1,5 +1,5 @@
 var Joi          = require('joi')
-var sanitizeHtml = require('sanitize-html');
+var sanitizeHtml = require('sanitize-html')
 var models       = require('../models')
 var helpers      = require('../helpers')
 

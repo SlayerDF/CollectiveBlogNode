@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./partials/head %>
+</head>
+
+<body class="container">
+
+    <navigation>
+        <% include ./partials/navigation %>
+    </navigation>
+
+    <div class="card" style="margin-top: 1rem;">
+        <div class="card-header bg-transparent">
+          <h5 class="card-title"><%= author %></h5>
+        </div>
+        <div class="card-body">
+            <% if (posts.length == 0) { %>
+                <h3>There are no posts</h3>
+            <% } %>
+            <% posts.forEach(function(post) { %>
+                <a href="/post/<%= post.id %>" class="card-link"><%= post.name %></a>
+            <% }) %>
+        </div>
+    </div>
+
+</body>
+
+</html>
