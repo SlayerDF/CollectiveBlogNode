@@ -8,10 +8,10 @@ var registerSchema = Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().alphanum().min(5).max(30).required(),
     passwordRepeat: Joi.any().valid(Joi.ref('password')).required()
-});
+})
 
 async function register(req, res, next) {
-    if (req.isAuthenticated()) return res.redirect('/')
+    if (req.isAuthenticated() === true) return res.redirect('/')
 
     var validation = registerSchema.validate(req.body, {abortEarly: false})
     if (await models.User.count({ where: { email: req.body.email }}) !== 0) {

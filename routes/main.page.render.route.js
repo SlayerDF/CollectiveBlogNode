@@ -5,14 +5,15 @@ var pageSchema = Joi.object().keys({
     page: Joi.number().integer().min(1),
 });
 
-const perPage = 2
+const perPage = 10
 
 async function main_page_render(req, res, next) {
     var validation = pageSchema.validate(req.params, {abortEarly: false})
     var page = typeof req.params.page !== 'undefined' && validation.error === null ? req.params.page : 1
 
     var pages = Math.ceil(await models.Post.count() / perPage)
-    if (page > pages) page = pages
+    if (pages === 0) page = 1
+    else if (page > pages) page = pages
 
     var posts = await models.Post.findAll({
         limit: perPage,

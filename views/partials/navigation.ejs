@@ -3,9 +3,14 @@
         <li class="nav-item active">
             <a class="nav-link" href="/">Main</a>
         </li>
+        <% if (typeof auth !== 'undefined' && auth === true) { %>
+            <li class="nav-item active">
+                <a class="nav-link" href="/post/new">New post</a>
+            </li>
+        <% } %>
     </ul>
     <ul class="navbar-nav">
-          <% if (typeof auth == 'undefined' || !auth) { %>
+          <% if (typeof auth === 'undefined' || auth === false) { %>
           <li class="nav-item">
               <a class="nav-link" href="/register">Register</a>
           </li>

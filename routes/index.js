@@ -28,11 +28,11 @@ router.get('/',                 route_main_page_render)
 
 router.get('/page/:page',       route_main_page_render)
 
-router.get('/post/:id',         route_post_render)
-
 router.get('/post/new',         route_post_new_render)
 
 router.post('/post/new',        route_post_new_create)
+
+router.get('/post/:id',         route_post_render)
 
 router.get('/post/:id/edit',    route_post_edit_render)
 

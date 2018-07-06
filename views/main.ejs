@@ -23,20 +23,26 @@
             </div>
           </div>
     <% }) %>
-    
-    <nav aria-label="Page navigation example" style="margin-top: 1rem;">
-        <ul class="pagination justify-content-center">
-          <% if (pages.previous != null) { %>
-          <li class="page-item"><a class="page-link" href="/page/<%= pages.previous %>">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="/page/<%= pages.previous %>"><%= pages.previous %></a></li>
-          <% } %>
-          <li class="page-item active"><a class="page-link" href="#"><%= pages.current %></a></li>
-          <% if (pages.next != null) { %>
-          <li class="page-item"><a class="page-link" href="/page/<%= pages.next %>"><%= pages.next %></a></li>
-          <li class="page-item"><a class="page-link" href="/page/<%= pages.next %>">Next</a></li>
-          <% } %>
-        </ul>
-    </nav>
+
+    <% if (posts.length == 0) { %>
+        <div class="jumbotron">
+            <h3>There are no posts</h1>
+        </div
+    <% } else { %>    
+        <nav aria-label="Page navigation example" style="margin-top: 1rem;">
+            <ul class="pagination justify-content-center">
+              <% if (pages.previous != null) { %>
+              <li class="page-item"><a class="page-link" href="/page/<%= pages.previous %>">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="/page/<%= pages.previous %>"><%= pages.previous %></a></li>
+              <% } %>
+              <li class="page-item active"><a class="page-link" href="#"><%= pages.current %></a></li>
+              <% if (pages.next != null) { %>
+              <li class="page-item"><a class="page-link" href="/page/<%= pages.next %>"><%= pages.next %></a></li>
+              <li class="page-item"><a class="page-link" href="/page/<%= pages.next %>">Next</a></li>
+              <% } %>
+            </ul>
+        </nav>
+    <% } %>
 
 </body>
 

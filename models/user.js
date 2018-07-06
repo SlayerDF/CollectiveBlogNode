@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       set(val) {
         this.setDataValue('password', bcrypt.hashSync(val, 10));
       }
-    }
+    },
+    admin: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
     User.hasMany(models.Post, {foreignKey: 'user', sourceKey: 'id'});
