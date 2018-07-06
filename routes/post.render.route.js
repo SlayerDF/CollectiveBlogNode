@@ -1,6 +1,17 @@
+var models = require('../models')
 
-function post_render(req, res, next) {
+async function post_render(req, res) {
+    if (!req.params.id) return res.sendStatus(404)
 
+    var post = await models.Post.findById(req.params.id)
+
+    if (!post) return res.sendStatus(404)
+
+    res.render('../views/post', { 
+        auth: req.isAuthenticated(),
+        post: post,
+        access: req.user && (req.user.get('id') == post.user || req.user.get('admin') === true)
+     })
 }
 
 module.exports = post_render

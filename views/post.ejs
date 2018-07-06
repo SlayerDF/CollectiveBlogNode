@@ -12,87 +12,25 @@
     </navigation>
 
     <% 
-        var form = {
-            name: "",
-            description: "",
-            text: ""
-        }
-
-        var edit = typeof edit !== 'undefined' ? edit : false
-
-        if (post) form = post
-        else if (data != null) form = data
+        var access = typeof access !== 'undefined' ? access : false
     %>
 
-    <form 
-        class="needs-validation" 
-        method="POST" 
-        action="<%= edit === true ? '/post/' + post.id : '/post/new' %>" 
-        style="margin-top: 1rem;">
-
-        <div class="form-group">
-
-            <label for="name">Title</label>
-
-            <input 
-                type="text" 
-                class="form-control <%= typeof errors!='undefined' && typeof errors.name!='undefined' ? 'is-invalid' : '' %>" 
-                id="name" 
-                name="name" 
-                placeholder="Enter title" 
-                value="<%= form.name %>" 
-                required>
-
-            <div class="invalid-feedback">
-                <%= typeof errors!='undefined' && typeof errors.name!='undefined' ? errors.name : '' %>
-            </div>
-
+    <div class="card" style="margin-top: 1rem;">
+        <div class="card-header bg-transparent">
+          <h5 class="card-title"><%= post.name %></h5>
+          <p class="card-text">By <a href="/author/<%= post.user %>"><%= post.author %></a> | <%= post.createdAt %> </p>
+          <p class="card-text"><%= post.description %></p>
         </div>
-        
-        <div class="form-group">
-
-            <label for="description">Description</label>
-
-            <input 
-                type="text" 
-                class="form-control <%= typeof errors!='undefined' && typeof errors.description!='undefined' ? 'is-invalid' : '' %>" 
-                id="description" 
-                name="description" 
-                placeholder="Enter description" 
-                value="<%= form.description %>" 
-                required>
-            
-            <div class="invalid-feedback">
-                <%= typeof errors!='undefined' && typeof errors.description!='undefined' ? errors.description : '' %>
-            </div>
-
+        <div class="card-body">
+            <p class="card-text"><%- post.text %></p>
         </div>
-
-        <div class="form-group">
-
-            <label for="text">Content</label>
-
-            <textarea noresize 
-                type="text" 
-                class="form-control <%= typeof errors!='undefined' && typeof errors.text!='undefined' ? 'is-invalid' : '' %>" 
-                id="text" 
-                name="text" 
-                aria-describedby="textHelpInline"
-                placeholder="Enter content"><%= form.text %></textarea>
-            
-            <div class="invalid-feedback">
-                <%= typeof errors!='undefined' && typeof errors.text!='undefined' ? errors.text : '' %>
-            </div>
-
-            <small id="textHelpInline" class="text-muted">
-                    Allowed tags: p, h1-h6, img (including alt, src), b, i, blockquote, pre, a (including href)
-            </small>
-
+        <% if (access === true) { %>
+        <div class="card-footer bg-transparent">
+          <a href="/post/<%= post.id %>/edit" class="card-link btn btn-info" role="button">Edit</a>
+          <a href="/post/<%= post.id %>/delete" class="card-link btn btn-danger" role="button">Delete</a>
         </div>
-
-        <button type="submit" class="btn btn-primary"><%= edit === true ? 'Save' : 'Create' %></button>
-
-    </form>
+        <% } %>
+    </div>
 
 </body>
 

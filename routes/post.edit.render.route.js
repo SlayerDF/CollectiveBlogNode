@@ -9,7 +9,7 @@ async function post_edit_render(req, res, next) {
 
     if (!post) return res.sendStatus(404)
  
-    res.render('../views/post', { 
+    res.render('../views/post.modify.ejs', { 
         auth: req.isAuthenticated(),
         post: post,
         edit: true

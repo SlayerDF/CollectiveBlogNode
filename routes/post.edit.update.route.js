@@ -24,7 +24,7 @@ async function post_edit_update(req, res, next) {
         return res.sendStatus(403)
 
     var validation = postSchema.validate(req.body, {abortEarly: false})
-    if (validation.error !== null) return res.render('../views/post', {
+    if (validation.error !== null) return res.render('../views/post.modify.ejs', {
         auth: req.isAuthenticated(),
         post: {
             name: req.body.name,

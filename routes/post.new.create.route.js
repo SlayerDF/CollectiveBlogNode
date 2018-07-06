@@ -14,7 +14,7 @@ async function post_new_create(req, res, next) {
     if (req.isAuthenticated() === false) return res.redirect('/')
 
     var validation = postSchema.validate(req.body, {abortEarly: false})
-    if (validation.error !== null) return res.render('../views/post', {
+    if (validation.error !== null) return res.render('../views/modify.ejs', {
         auth: req.isAuthenticated(),
         post: {
             name: req.body.name,

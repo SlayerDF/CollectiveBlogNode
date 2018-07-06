@@ -12,6 +12,7 @@ var route_post_new_render   = require('./post.new.render.route.js')
 var route_post_new_create   = require('./post.new.create.route.js')
 var route_post_edit_render  = require('./post.edit.render.route.js')
 var route_post_edit_update  = require('./post.edit.update.route.js')
+var route_post_delete       = require('./post.delete.route.js')
 var route_author_render     = require('./author.render.route.js')
 
 router.get('/register',         route_register_render)
@@ -35,6 +36,8 @@ router.post('/post/new',        route_post_new_create)
 router.get('/post/:id',         route_post_render)
 
 router.get('/post/:id/edit',    route_post_edit_render)
+
+router.get('/post/:id/delete',  route_post_delete)
 
 router.post('/post/:id',        route_post_edit_update)
 
