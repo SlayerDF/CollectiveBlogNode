@@ -27,7 +27,7 @@ async function initialize() {
         app.use(passport.session())
         app.use('/', routes)
         
-        app.listen(80, () => console.log('Server started'))
+        app.listen(process.env.PORT || 80, () => console.log('Server started'))
     }
     catch(err) {
         console.log(err)
