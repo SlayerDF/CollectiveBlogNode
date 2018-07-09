@@ -23,7 +23,7 @@
 Клонируйте репозиторий и установите зависимости.
 
 ```bash
-https://github.com/SlayerDF/CollectiveBlogNode.git
+git clone https://github.com/SlayerDF/CollectiveBlogNode.git
 cd CollectiveBlogNode
 ```
 
